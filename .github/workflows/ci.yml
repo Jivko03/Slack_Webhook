@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: |
+          echo "Running tests"
+          exit 1  # Simulate failure
+
+    # Add this block to send Slack alert on failure
+    if: failure()
+    steps:
+      - name: Notify Slack on Failure
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": ":x: *GitHub Action Failed!*",
+              "attachments": [
+                {
+                  "text": "Repository: ${{ github.repository }}\nWorkflow: ${{ github.workflow }}\nJob: ${{ github.job }}\nCommit: ${{ github.sha }}",
+                  "color": "#ff0000"
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
