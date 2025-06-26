@@ -23,10 +23,10 @@ jobs:
         with:
           status: ${{ job.status }}
           notify_when: "failure"
-          notification_title: "❌ {workflow} failed"
+          notification_title: "👌 {workflow} failed"
           message_format: |
             "{emoji} *{workflow}* failed in <{repo_url}|{repo}>"
-            "\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
+            "*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ| How to work with Slack Webhooks>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -36,9 +36,9 @@ jobs:
         with:
           status: ${{ job.status }}
           notify_when: "failure"
-          notification_title: "👤 Direct alert: {workflow} failed"
+          notification_title: "🫡🫡🫡 Direct alert: {workflow} failed"
           message_format: |
             "{emoji} Heads-up! *{workflow}* failed — check <{repo_url}|{repo}>"
-            "\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
+            "*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
