@@ -1,4 +1,4 @@
-name: FAILURE
+name: CI
 
 on:
   workflow_dispatch:
@@ -27,14 +27,43 @@ jobs:
         with:
           payload: |
             {
-              "text": ":x: *GitHub Action Failed!*",
-              "attachments": [
+              "blocks": [
                 {
-                  "text": "Repository: ${{ github.repository }}\nWorkflow: ${{ github.workflow }}\nJob: build\nCommit: ${{ github.sha }}",
-                  "color": "#ff0000"
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":x: *GitHub Action Failed!*"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Workflow:*\n${{ github.workflow }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Job:*\nbuild"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Commit:*\n<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Oh, and here's something to lighten your mood: [Never Gonna Give You Up](https://www.youtube.com/watch?v=dQw4w9WgXcQ)"
+                  }
                 }
               ]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
