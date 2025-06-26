@@ -28,7 +28,7 @@ jobs:
             "{emoji} *{workflow}* failed in <{repo_url}|{repo}>"
             "\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_GROUP }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Notify Slack (Personal message)
         if: failure()
