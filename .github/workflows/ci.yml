@@ -27,7 +27,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "GitHub Action Failure Alert",  # Required fallback text
+              "text": "GitHub Action Failure Alert",
               "blocks": [
                 {
                   "type": "section",
