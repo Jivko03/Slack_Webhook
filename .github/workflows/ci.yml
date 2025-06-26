@@ -27,7 +27,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "GitHub Action Failure Alert",
+              "text": "GitHub Action Failure Alert", 
               "blocks": [
                 {
                   "type": "section",
@@ -61,7 +61,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Here's something to cheer you up: [Never Gonna Give You Up](https://www.youtube.com/watch?v=dQw4w9WgXcQ)"
+                    "text": "Here's something to cheer you up: <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
                   }
                 }
               ]
