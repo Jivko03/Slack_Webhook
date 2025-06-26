@@ -34,36 +34,13 @@ jobs:
                   "text": {
                     "type": "mrkdwn",
                     "text": ":x: *GitHub Action Failed!*"
+                    "text": "Here's something to cheer you up: <https://www.youtube.com/watch?v=dQw4w9WgXcQ| Why it's not working>"
+                    "text": "*Repository:*\n${{ github.repository }}"
+                    "text": "*Workflow:*\n${{ github.workflow }}"
+                    "text": "*Job:*\nbuild"
+                    "text": "*Commit:*\n<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}"
                   }
                 },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Repository:*\n${{ github.repository }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Workflow:*\n${{ github.workflow }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Job:*\nbuild"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Commit:*\n<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Here's something to cheer you up: <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
-                  }
-                }
               ]
             }
         env:
