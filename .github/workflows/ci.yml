@@ -27,20 +27,15 @@ jobs:
         with:
           payload: |
             {
-              "text": "GitHub Action Failure Alert", 
+              "text": "GitHub Action Failure Alert",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ":x: *GitHub Action Failed!*"
-                    "text": "Here's something to cheer you up: <https://www.youtube.com/watch?v=dQw4w9WgXcQ| Why it's not working>"
-                    "text": "*Repository:*\n${{ github.repository }}"
-                    "text": "*Workflow:*\n${{ github.workflow }}"
-                    "text": "*Job:*\nbuild"
-                    "text": "*Commit:*\n<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}"
+                    "text": ":x: *GitHub Action Failed!*\nHere's something to cheer you up: <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Why it's not working>\n\n*Repository:* ${{ github.repository }}\n*Workflow:* ${{ github.workflow }}\n*Job:* build\n*Commit:* <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}"
                   }
-                },
+                }
               ]
             }
         env:
