@@ -1,4 +1,4 @@
-name: CI
+name: Actions with Slack Notification
 
 on:
   workflow_dispatch:
@@ -11,32 +11,34 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run Tests
+      - name: Run tests
         run: |
-          echo "Running tests"
-          exit 1  # Simulate failure
+          echo "Running tests..."
+          # Simulate failure for testing
+          exit 1
 
-  notify-on-failure:
-    needs: build
-    runs-on: ubuntu-latest
-    if: failure()
-
-    steps:
-      - name: Notify Slack on Failure
-        uses: slackapi/slack-github-action@v1.24.0
+      - name: Notify Slack (Channel message)
+        if: failure()
+        uses: ravsamhq/notify-slack-action@v2
         with:
-          payload: |
-            {
-              "text": "GitHub Action Failure Alert", 
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":x: *GitHub Action Failed!*\n\n*Repository:* ${{ github.repository }}\n*Workflow:* ${{ github.workflow }}\n*Job:* build\n*Commit:* <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>\n\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
-                  }
-                }
-              ]
-            }
+          status: ${{ job.status }}
+          notify_when: "failure"
+          notification_title: "❌ {workflow} failed"
+          message_format: |
+            "{emoji} *{workflow}* failed in <{repo_url}|{repo}>"
+            "\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_GROUP }}
+
+      - name: Notify Slack (Personal message)
+        if: failure()
+        uses: ravsamhq/notify-slack-action@v2
+        with:
+          status: ${{ job.status }}
+          notify_when: "failure"
+          notification_title: "👤 Direct alert: {workflow} failed"
+          message_format: |
+            "{emoji} Heads-up! *{workflow}* failed — check <{repo_url}|{repo}>"
+            "\n*See possible fixes:* <https://www.youtube.com/watch?v=dQw4w9WgXcQ|Never Gonna Give You Up>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
